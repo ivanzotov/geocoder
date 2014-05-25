@@ -17,8 +17,7 @@ module Geocoder::Lookup
     private # ---------------------------------------------------------------
 
     def parse_raw_data(raw_data)
-      encoded_data = raw_data.encode('windows-1251', 'utf-8')
-
+      encoded_data = raw_data
 
       if encoded_data.match(/Incorrect request|Not found/)
         return nil
@@ -58,7 +57,7 @@ module Geocoder::Lookup
     def query_url_params(query)
       {
         :ip => query.sanitized_text        
-      }
+      }.merge(super)
     end
   end
 end
