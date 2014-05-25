@@ -50,7 +50,8 @@ module Geocoder
         :freegeoip,
         :maxmind,
         :maxmind_local,
-        :baidu_ip
+        :baidu_ip,
+        :ipgeobase
       ]
     end
 
