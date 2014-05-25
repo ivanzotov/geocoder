@@ -1,8 +1,7 @@
-require "rexml/document"
-require 'iconv' unless String.instance_methods.include?(:encode)
+require 'rexml/document'
 
-require "#{File.dirname(__FILE__)}/base"
-require "#{File.dirname(__FILE__)}/../results/ipgeobase"
+require 'geocoder/lookups/base'
+require 'geocoder/results/ipgeobase'
 
 module Geocoder::Lookup
   class Ipgeobase < Base
@@ -18,11 +17,8 @@ module Geocoder::Lookup
     private # ---------------------------------------------------------------
 
     def parse_raw_data(raw_data)
-      encoded_data = if raw_data.respond_to?(:encode)
-        raw_data.encode('windows-1251', 'utf-8')
-      else
-        Iconv.iconv('windows-1251', 'utf-8', raw_data).first
-      end
+      encoded_data = raw_data.encode('windows-1251', 'utf-8')
+
 
       if encoded_data.match(/Incorrect request|Not found/)
         return nil

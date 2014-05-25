@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/base"
+require 'geocoder/results/base'
 
 module Geocoder::Result
   class Ipgeobase < Base
